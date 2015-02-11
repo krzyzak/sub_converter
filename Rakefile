@@ -20,5 +20,5 @@ task :test do
 
   $:.unshift File.expand_path("../", path)
 
-  Dir["test/*_test.rb"].each{|f| require f }
+  Dir["test/**/*_test.rb"].each{|f| require f }
 end
