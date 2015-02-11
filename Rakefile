@@ -6,6 +6,15 @@ path = Pathname.new(__FILE__).realpath
 $:.unshift File.expand_path("../lib", path)
 require "sub_converter"
 
+
+task :console do
+  require "irb"
+  require "irb/completion"
+
+  ARGV.clear
+  IRB.start
+end
+
 task :test do
   require "minitest/autorun"
 
