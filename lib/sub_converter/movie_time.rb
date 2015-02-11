@@ -1,12 +1,13 @@
 module SubConverter
   class MovieTime
-    attr_accessor :raw
+    attr_accessor :raw, :time
 
     def initialize(raw)
       self.raw = raw
     end
 
     def raw=(value)
+      @time = value.to_f
       @raw, @miliseconds = value.split(".").map(&:to_i)
     end
 
@@ -32,6 +33,10 @@ module SubConverter
 
     def to_time
       [hours, minutes, seconds_with_miliseconds].join(":")
+    end
+
+    def to_frame(fps)
+      (time * fps).to_i
     end
 
     private

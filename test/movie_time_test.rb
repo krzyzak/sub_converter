@@ -32,4 +32,10 @@ class MovieTimeTest < MiniTest::Test
 
     assert_equal "52", @time.seconds
   end
+
+  def test_calculates_frame
+    @time.raw = "22.034"
+
+    assert_equal 528, @time.to_frame(23.976)
+  end
 end
