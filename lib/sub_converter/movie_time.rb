@@ -7,7 +7,7 @@ module SubConverter
     end
 
     def raw=(value)
-      @raw, @miliseconds = value.split(",").map(&:to_i)
+      @raw, @miliseconds = value.split(".").map(&:to_i)
     end
 
     def hours
@@ -23,11 +23,15 @@ module SubConverter
     end
 
     def miliseconds
-      format(@miliseconds)
+      format(@miliseconds, 3)
     end
 
     def seconds_with_miliseconds
       [seconds, miliseconds].join(",")
+    end
+
+    def to_time
+      [hours, minutes, seconds_with_miliseconds].join(":")
     end
 
     private
@@ -44,8 +48,8 @@ module SubConverter
       end
     end
 
-    def format(value)
-      sprintf("%.2d", value)
+    def format(value, precision = 2)
+      sprintf("%.#{precision}d", value)
     end
   end
 end
